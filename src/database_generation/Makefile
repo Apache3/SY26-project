@@ -1,23 +1,15 @@
 CC=g++
-CFLAGS+=-Wall -I/usr/local/include/
-#CFLAGS+=`- opencv -l boost_filesystem`
-#CFLAGS+='pkg-config --cflags opencv'
-CFLAGS+=-L opencv -L ../boost_1_65_1/stage/lib/ -lboost_filesystem -lboost_system
-#LDFLAGS+=`pkg-config --libs opencv -l boost_filesystem` 
-LDFLAGS+=`pkg-config --libs opencv boost` 
-#LDFLAGS+=-L opencv boost_filesystem
+USER_LIB_PATH=../libs
+LIBS=DatabaseGenerator
 PROG=database_generation
-OBJS=$(PROG).o
+CFLAGS=-I$(USER_LIB_PATH)
+LDFLAGS+=`pkg-config --libs opencv boost` 
 
-.PHONY: all clean
+all:
+	$(CC) -Wall -c $(USER_LIB_PATH)/$(LIBS).cpp
+	$(CC) -Wall $(PROG).cpp -c $(CFLAGS)
+	$(CC) -Wall -o $(PROG) $(PROG).o $(USER_LIB_PATH)/$(LIBS).cpp $(LDFLAGS)
 
-$(PROG): $(OBJS)
-	$(CC) -o $(PROG) $(OBJS) $(LDFLAGS)
-
-%.o: %.cpp
-	$(CC) -c $(CFLAGS) $<
-
-all: $(PROG)
 
 clean:
-	rm -f $(OBJS) $(PROG)
+	rm -f $(PROG) *.o

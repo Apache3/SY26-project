@@ -24,9 +24,7 @@ else:
 	    data = caffe.io.datum_to_array(datum)
 
 	    #CxHxW to HxWxC in cv2
-	    #print data.shape
 	    image = np.transpose(data, (1,2,0))
-	    #print  image.shape
 	    cv2.imshow('cv2', image)
 	    print('{},{}'.format(key, label_tab[label]))
 	    cv2.waitKey(300)

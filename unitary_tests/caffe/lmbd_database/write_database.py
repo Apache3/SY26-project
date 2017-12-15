@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from os import walk
 
 lmdb_file = 'lmdb_data'
-batch_size = 256
+batch_size = 42
 database_path = '../../../database/'
 
 images_dic ={}

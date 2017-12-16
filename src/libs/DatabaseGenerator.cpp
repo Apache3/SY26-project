@@ -66,43 +66,30 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int ang
 
 		
 
-		bool res;
-		res = imwrite(filename + ext,rot_img);
-		if (res)
+		write_image(rot_img, filename + ext);
+		
+
+		Mat noise_img;
+		stringstream convert;
+		for(int i = 1; i <= 5; i++)
 		{
-			cout <<"image written at: "<<filename + ext <<endl;
+			noise_img = rot_img.clone();
+			add_salt_pepper_Noise(noise_img, 0.05*i,0.05*i);
+			convert << i;
+			write_image(noise_img, filename + "_snp_"+ convert.str() + ext);
+			convert.str("");
 		}
-		else
+		
+		for(int i = 1; i <= 8; i++)
 		{
-			cout << "Error while saving " << filename << endl;
+			noise_img = rot_img.clone();
+			add_gaussian_Noise(noise_img, 0,10*i);
+			convert << i;
+			write_image(noise_img, filename + "_gaussian_" + convert.str() + ext);
+			convert.str("");
 		}
-
-		Mat noise_img = rot_img.clone();
-		add_salt_pepper_Noise(noise_img, 0.2,0.2);
-
-		res = imwrite(filename + "_snp" + ext,noise_img);
-		if (res)
-		{
-			cout <<"image written at: "<<filename + "_snp" + ext<<endl;
-		}
-		else
-		{
-			cout << "Error while saving " << filename << endl;
-		}		
-
-		noise_img = rot_img.clone();
-
-		add_gaussian_Noise(noise_img, 0,55);
-
-		res = imwrite(filename + "_gaussian" + ext,noise_img);
-		if (res)
-		{
-			cout <<"image written at: "<<filename + "_gaussian" + ext<<endl;
-		}
-		else
-		{
-			cout << "Error while saving " << filename << endl;
-		}		
+		
+			
 
 	}
    	
@@ -118,6 +105,19 @@ Mat DatabaseGenerator::rotate(Mat src, double angle)
     Mat r = getRotationMatrix2D(pt, angle, 1.0);
     warpAffine(src, dst, r, Size(src.cols, src.rows));
     return dst;
+}
+
+void DatabaseGenerator::write_image(Mat img, string filename)
+{
+	bool res = imwrite(filename,img);
+	if (res)
+	{
+		cout <<"image written at: "<< filename <<endl;
+	}
+	else
+	{
+		cout << "Error while saving " << filename << endl;
+	}	
 }
 
 // adds salt and pepper noise. Coded by timlentse (https://github.com/timlentse/Add_Salt-Pepper_Noise), modified a bit

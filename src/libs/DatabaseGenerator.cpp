@@ -46,7 +46,7 @@ void DatabaseGenerator::generateDatabase()
                   cout <<"directory created at :"<< canonical(databaseDir) <<endl;
                 }
 
-                modify_image(origin_image, databaseDir);
+                modify_image(origin_image, databaseDir, 80, 10);
 
               }
         }
@@ -60,35 +60,50 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int ang
 	for (int angle = 0; angle <= max_angle; angle+=angle_step )
 	{
 		Mat rot_img = rotate(img,angle);
-
 		string angl_str = lexical_cast<string>(angle);
-		string filename = p.string()+"/" + p.stem().string() + "_" + angl_str;
+		string filename = p.string()+"/" + p.stem().string() + "_rot" + angl_str;
 
 		
 
-		write_image(rot_img, filename + ext);
+		//write_image(rot_img, filename + ext);
 		
 
-		Mat noise_img;
-		stringstream convert;
-		for(int i = 1; i <= 5; i++)
+		for (int contrast_value = 1; contrast_value <= 3; contrast_value+=1)
 		{
-			noise_img = rot_img.clone();
-			add_salt_pepper_Noise(noise_img, 0.05*i,0.05*i);
-			convert << i;
-			write_image(noise_img, filename + "_snp_"+ convert.str() + ext);
-			convert.str("");
+			Mat con_img = brightness(rot_img, contrast_value);
+			string con_str = lexical_cast<string>(contrast_value);
+			string filename2 = filename + "_con" + con_str;
+
+
+			for (int brightness_value = 1; brightness_value <= 40; brightness_value+=20)
+			{
+				Mat bri_img = contrast(con_img, brightness_value);
+				string bri_str = lexical_cast<string>(brightness_value);
+				string filename3 = filename2 + "_bri" + bri_str;
+
+				write_image(bri_img, filename3 + ext);
+
+				Mat noise_img;
+				stringstream convert;
+				for(int i = 1; i <= 5; i++)
+				{
+					noise_img = bri_img.clone();
+					add_salt_pepper_Noise(noise_img, 0.05*i,0.05*i);
+					convert << i;
+					write_image(noise_img, filename3 + "_snp"+ convert.str() + ext);
+					convert.str("");
+				}
+				
+				for(int i = 1; i <= 8; i++)
+				{
+					noise_img = bri_img.clone();
+					add_gaussian_Noise(noise_img, 0,10*i);
+					convert << i;
+					write_image(noise_img, filename3 + "_gau" + convert.str() + ext);
+					convert.str("");
+				}
+			}
 		}
-		
-		for(int i = 1; i <= 8; i++)
-		{
-			noise_img = rot_img.clone();
-			add_gaussian_Noise(noise_img, 0,10*i);
-			convert << i;
-			write_image(noise_img, filename + "_gaussian_" + convert.str() + ext);
-			convert.str("");
-		}
-		
 			
 
 	}
@@ -97,6 +112,38 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int ang
 }
 
 //rotates the image aroud its center
+
+Mat DatabaseGenerator::contrast(Mat image, double alpha) //plz alpha between 1.0 and 3.0
+{
+	Mat new_image = Mat::zeros(image.size(), image.type());
+		for( int y = 0; y < image.rows; y++ )
+    	{ 
+    		for( int x = 0; x < image.cols; x++ )
+    		{
+    			for( int c = 0; c < 3; c++ )
+    			{
+    				new_image.at<Vec3b>(y,x)[c] = saturate_cast<uchar>( alpha*( image.at<Vec3b>(y,x)[c] ));
+    			}
+ 		   	}
+		}
+	return new_image;
+}
+
+Mat DatabaseGenerator::brightness(Mat image, double beta) //plz beta between 1 and 100
+{
+	Mat new_image = Mat::zeros(image.size(), image.type());
+		for( int y = 0; y < image.rows; y++ )
+    	{ 
+    		for( int x = 0; x < image.cols; x++ )
+    		{
+    			for( int c = 0; c < 3; c++ )
+    			{
+    				new_image.at<Vec3b>(y,x)[c] = saturate_cast<uchar>(( image.at<Vec3b>(y,x)[c] + beta));
+    			}
+ 		   	}
+		}
+	return new_image;
+}
 
 Mat DatabaseGenerator::rotate(Mat src, double angle)
 {

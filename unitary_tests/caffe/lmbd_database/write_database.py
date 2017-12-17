@@ -6,9 +6,9 @@ from caffe.proto import caffe_pb2
 import matplotlib.pyplot as plt
 from os import walk
 
-lmdb_file = 'lmdb_data'
+lmdb_file = '../net_test/shape_test_lmdb/'
 batch_size = 42
-database_path = '../../../database/'
+database_path = '../../../database/test/'
 
 images_dic ={}
 label_dic = {'Cross':0, 'Diamond':1, 'Disc':2, 'Square':3, 'Triangle':4, 'Octogon':5}

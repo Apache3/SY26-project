@@ -24,6 +24,7 @@ def pi_cam_init():
 def get_pi_cam_image(camera, rawCapture):
 	camera.capture(rawCapture, format="bgr")
 	image = rawCapture.array
+	rawCapture.truncate(0)
 	return image
 
 def caffe_init():

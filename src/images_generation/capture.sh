@@ -68,7 +68,7 @@ snap()
 
 addBaseImages()
 {
-	rsync $ROOT/old_image_data/images/ $ROOT/images/
+	cp -r $ROOT/old_image_data/images/* $ROOT/images
 }
 
 instructions

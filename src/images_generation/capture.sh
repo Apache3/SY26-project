@@ -3,7 +3,6 @@
 BASEFOLDER=$PWD
 cd ../../
 ROOT=$PWD
-cd BASEFOLDER
 
 mkdir -p $ROOT/images/Cross
 mkdir -p $ROOT/images/Diamond

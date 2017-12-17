@@ -27,33 +27,45 @@ void DatabaseGenerator::generateDatabase()
   Mat origin_image;
   for (directory_iterator itr(m_path_to_images); itr!=directory_iterator(); ++itr)
         {
-              path p = itr->path();
-              if( is_regular_file(p) )
+              path label_path = itr->path();
+              if ( is_directory(label_path))
               {
-                origin_image = imread(p.string(),CV_LOAD_IMAGE_COLOR);
-                
-                string databaseDirName = "database/" + p.stem().string();
-                //creating the database folder if it does'nt exists
-                path databaseDir = p.parent_path().parent_path()/databaseDirName;
-                if ( !exists(databaseDir.parent_path()))
-                {
-                  create_directory(databaseDir.parent_path());
-                }
-                //create a folder for the transformed images
-                if ( !exists(databaseDir) )
-                {
-                  create_directory(databaseDir);
-                  cout <<"directory created at :"<< canonical(databaseDir) <<endl;
-                }
+              	for(directory_iterator lbl_itr(label_path); lbl_itr!=directory_iterator();lbl_itr++)
+              	{
+              		path p = lbl_itr->path();
+	              	if( is_regular_file(p) )
+					{
 
-                modify_image(origin_image, databaseDir, 80, 10);
+						origin_image = imread(p.string(),CV_LOAD_IMAGE_COLOR);
+						
+						string databaseDirName = "../database/" + label_path.stem().string();
+						//creating the database folder if it does'nt exists
+						path databaseDir = p.parent_path().parent_path()/databaseDirName;
+						if ( !exists(databaseDir.parent_path()))
+						{
+						  create_directory(databaseDir.parent_path());
+						}
+						//create a folder for the transformed images
+						if ( !exists(databaseDir) )
+						{
+						  create_directory(databaseDir);
+						  cout <<"directory created at :"<< canonical(databaseDir) <<endl;
+						}
+						cout << databaseDir << endl;
+						modify_image(origin_image, databaseDir,p.stem().string(), 80, 20);//
 
+					}
+				}
               }
+              //if p is dir
+
+              		//for
+              
         }
 }
 
 //create all the needed transformation of the source image into the path p 
-void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int angle_step)
+void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_angle,int angle_step)
 {
 	string ext = ".png";
 	
@@ -61,7 +73,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int ang
 	{
 		Mat rot_img = rotate(img,angle);
 		string angl_str = lexical_cast<string>(angle);
-		string filename = p.string()+"/" + p.stem().string() + "_rot" + angl_str;
+		string filename = p.string()+"/" + fn + "_rot" + angl_str;
 
 		
 
@@ -85,7 +97,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int ang
 
 				Mat noise_img;
 				stringstream convert;
-				for(int i = 1; i <= 5; i++)
+				for(int i = 1; i <= 6; i=i+2)
 				{
 					noise_img = bri_img.clone();
 					add_salt_pepper_Noise(noise_img, 0.05*i,0.05*i);
@@ -94,7 +106,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, int max_angle,int ang
 					convert.str("");
 				}
 				
-				for(int i = 1; i <= 8; i++)
+				for(int i = 1; i <= 8; i=i+2)
 				{
 					noise_img = bri_img.clone();
 					add_gaussian_Noise(noise_img, 0,10*i);

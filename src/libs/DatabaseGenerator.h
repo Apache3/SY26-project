@@ -22,7 +22,7 @@ class DatabaseGenerator
 
 	private:
 		path m_path_to_images;
-		void modify_image(cv::Mat& img, path p, int max_angle=45, int angle_step = ANGLE_STEP);
+		void modify_image(cv::Mat& img, path p, string filename, int max_angle=45, int angle_step = ANGLE_STEP);
 		Mat  rotate(Mat src, double angle);
 		Mat  contrast(Mat image, double alpha);
 		Mat  brightness(Mat image, double beta);

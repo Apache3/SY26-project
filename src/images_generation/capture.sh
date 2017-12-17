@@ -14,13 +14,13 @@ mkdir -p $ROOT/images/Background
 
 clean()
 {
-	rm -f $ROOT/images/Cross/*
-	rm -f $ROOT/images/Diamond/*
-	rm -f $ROOT/images/Disc/*
-	rm -f $ROOT/images/Square/*
-	rm -f $ROOT/images/Triangle/*
-	rm -f $ROOT/images/Octogon/*
-	rm -f $ROOT/images/Background/*
+	rm $ROOT/images/Cross/*
+	rm $ROOT/images/Diamond/*
+	rm $ROOT/images/Disc/*
+	rm $ROOT/images/Square/*
+	rm $ROOT/images/Triangle/*
+	rm $ROOT/images/Octogon/*
+	rm $ROOT/images/Background/*
 	echo "folders are now empty"
 }
 

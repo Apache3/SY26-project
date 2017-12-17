@@ -1,20 +1,14 @@
 #!/bin/bash
 
-#if [ ! -d ./images ]
-#then
-#	mkdir ./images
-#	cd ./images
-#fi
+ROOT=$../../PWD
 
-ROOT=$PWD
-
-mkdir -p ./images/Cross
-mkdir -p ./images/Diamond
-mkdir -p ./images/Disc
-mkdir -p ./images/Square
-mkdir -p ./images/Triangle
-mkdir -p ./images/Octogon
-mkdir -p ./images/Background
+mkdir -p $ROOT/images/Cross
+mkdir -p $ROOT/images/Diamond
+mkdir -p $ROOT/images/Disc
+mkdir -p $ROOT/images/Square
+mkdir -p $ROOT/images/Triangle
+mkdir -p $ROOT/images/Octogon
+mkdir -p $ROOT/images/Background
 
 clean()
 {
@@ -46,26 +40,26 @@ snap()
 {
 	LADATE=$(date +_%m%d%H%M%S)
 	case $1 in
-		c ) 	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Cross/cross$LADATE
-			convert ./images/Cross/cross$LADATE -resize 28x28 ./images/Cross/cross$LADATE
+		c ) 	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Cross/cross$LADATE
+			convert $ROOT/images/Cross/cross$LADATE -resize 28x28 $ROOT/images/Cross/cross$LADATE
 			echo "\033[1Asnap cross$LADATE";;
-		l )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Diamond/diamond$LADATE
-			convert ./images/Diamond/diamond$LADATE -resize 28x28 ./images/Diamond/diamond$LADATE
+		l )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Diamond/diamond$LADATE
+			convert $ROOT/images/Diamond/diamond$LADATE -resize 28x28 $ROOT/images/Diamond/diamond$LADATE
 			echo "\033[1Asnap diamond$LADATE";;
-		d )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Disc/disc$LADATE
-			convert ./images/Disc/disc$LADATE -resize 28x28 ./images/Disc/disc$LADATE
+		d )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Disc/disc$LADATE
+			convert $ROOT/images/Disc/disc$LADATE -resize 28x28 $ROOT/images/Disc/disc$LADATE
 			echo "\033[1Asnap disc$LADATE";;
-		s )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Square/square$LADATE
-			convert ./images/Square/square$LADATE -resize 28x28 ./images/Square/square$LADATE
+		s )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Square/square$LADATE
+			convert $ROOT/images/Square/square$LADATE -resize 28x28 $ROOT/images/Square/square$LADATE
 			echo "\033[1Asnap square$LADATE";;
-		t )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Triangle/triangle$LADATE
-			convert ./images/Triangle/triangle$LADATE -resize 28x28 ./images/Triangle/triangle$LADATE
+		t )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Triangle/triangle$LADATE
+			convert $ROOT/images/Triangle/triangle$LADATE -resize 28x28 $ROOT/images/Triangle/triangle$LADATE
 			echo "\033[1Asnap triangle$LADATE";;
-		o )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Octogon/octogon$LADATE
-			convert ./images/Octogon/octogon$LADATE -resize 28x28 ./images/Octogon/octogon$LADATE
+		o )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Octogon/octogon$LADATE
+			convert $ROOT/images/Octogon/octogon$LADATE -resize 28x28 $ROOT/images/Octogon/octogon$LADATE
 			echo "\033[1Asnap octogon$LADATE";;
-		b )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o ./images/Background/background$LADATE
-			convert ./images/Background/background$LADATE -resize 28x28 ./images/Background/background$LADATE
+		b )	raspistill -t 900 -e png -h 720 -w 720 -ex auto -awb auto -o $ROOT/images/Background/background$LADATE
+			convert $ROOT/images/Background/background$LADATE -resize 28x28 $ROOT/images/Background/background$LADATE
 			echo "\033[1Asnap background$LADATE";;
 	esac
 }

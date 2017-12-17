@@ -67,6 +67,11 @@ snap()
 	esac
 }
 
+addBaseImages()
+{
+	cp ../../old_image_data/images/* ../../images/*
+}
+
 instructions
 
 while(true)
@@ -85,5 +90,7 @@ do
 		* ) instructions;;
 	esac
 done
+
+addBaseImages
 
 cd ../

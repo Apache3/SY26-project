@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import sys
 from os import walk
 
-#from picamera.array import PiRGBArray
-#from picamera import PiCamera
-#import time
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+import time
  
 # initialize the camera and grab a reference to the raw camera capture
 def pi_cam_init():
@@ -134,17 +134,18 @@ elif sys.argv[1] == 'predict' and len(sys.argv)>2:
 
 elif sys.argv[1] == 'camera':
 	
-	caffe.set_mode_cpufier(predict_prototxt, caffemodel,caffe.TEST,raw_scale=255)
+	caffe.set_mode_cpu()
+	net = caffe.Classifier(predict_prototxt, caffemodel,caffe.TEST,raw_scale=255)
 	print "successfully loaded classifier"
-	cam = cv2.VideoCapture(0)
-	#cam, rawCapture = pi_cam_init()
+	#cam = cv2.VideoCapture(0)
+	cam, rawCapture = pi_cam_init()
 
 	while True:
-		img = get_cam_image(cam,True)
-		#img = get_pi_cam_image(cam, rawCapture)
-		cv2.imshow('my webcam', img)
-		if cv2.waitKey(1) == 27: 
-			break  # esc to quit
+		#img = get_cam_image(cam,True)
+		img = get_pi_cam_image(cam, rawCapture)
+		#cv2.imshow('my webcam', img)
+		#if cv2.waitKey(1) == 27: 
+		#	break  # esc to quit
 		forward_img_to_net(img,net)
 
 elif sys.argv[1] == 'create_train_db':

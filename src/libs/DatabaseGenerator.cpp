@@ -87,7 +87,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 			string filename2 = filename + "_con" + con_str;
 
 
-			for (int brightness_value = 1; brightness_value <= 40; brightness_value+=20)
+			for (int brightness_value = 1; brightness_value <= 20; brightness_value+=10)
 			{
 				Mat bri_img = contrast(con_img, brightness_value);
 				string bri_str = lexical_cast<string>(brightness_value);

@@ -69,7 +69,7 @@ snap()
 
 addBaseImages()
 {
-	cp ../../old_image_data/images/* ../../images/*
+	cp $ROOT/old_image_data/images/* $ROOT/images/*
 }
 
 instructions

@@ -82,14 +82,14 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 
 		for (int contrast_value = 1; contrast_value <= 3; contrast_value+=1)
 		{
-			Mat con_img = brightness(rot_img, contrast_value);
+			Mat con_img = contrast(rot_img, contrast_value);
 			string con_str = lexical_cast<string>(contrast_value);
 			string filename2 = filename + "_con" + con_str;
 
 
-			for (int brightness_value = 1; brightness_value <= 20; brightness_value+=10)
+			for (int brightness_value = 1; brightness_value <= 10; brightness_value+=3)
 			{
-				Mat bri_img = contrast(con_img, brightness_value);
+				Mat bri_img = brightness(con_img, brightness_value);
 				string bri_str = lexical_cast<string>(brightness_value);
 				string filename3 = filename2 + "_bri" + bri_str;
 

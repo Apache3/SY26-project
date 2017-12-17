@@ -17,9 +17,10 @@ def pi_cam_init():
 	 
 	# allow the camera to warmup
 	time.sleep(0.1)
+	return camera,rawCapture
  
 # grab an image from the camera
-def get_pi_cam_image(camera):
+def get_pi_cam_image(camera, rawCapture):
 	camera.capture(rawCapture, format="bgr")
 	image = rawCapture.array
 	return image
@@ -97,8 +98,11 @@ elif sys.argv[1] == 'camera':
 	net = caffe.Classifier(predict_prototxt, caffemodel,caffe.TEST,raw_scale=255)
 	print "successfully loaded classifier"
 	cam = cv2.VideoCapture(0)
+	#cam, rawCapture = pi_cam_init()
+
 	while True:
 		img = get_cam_image(cam,True)
+		#img = get_pi_cam_image(cam, rawCapture)
 		cv2.imshow('my webcam', img)
 		if cv2.waitKey(1) == 27: 
 			break  # esc to quit

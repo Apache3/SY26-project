@@ -6,11 +6,34 @@ from caffe.proto import caffe_pb2
 import matplotlib.pyplot as plt
 import sys
 
+#from picamera.array import PiRGBArray
+#from picamera import PiCamera
+#import time
+ 
+# initialize the camera and grab a reference to the raw camera capture
+def pi_cam_init():
+	camera = PiCamera()
+	rawCapture = PiRGBArray(camera)
+	 
+	# allow the camera to warmup
+	time.sleep(0.1)
+ 
+# grab an image from the camera
+def get_pi_cam_image(camera):
+	camera.capture(rawCapture, format="bgr")
+	image = rawCapture.array
+	return image
+ 
+
 def get_cam_image(cam, mirror=False):
   	
 	ret_val, img = cam.read()
 	if mirror: 
 		img = cv2.flip(img, 1)
+
+	h,w,c = img.shape
+	border_size = min(w,h)
+	#img = img[0:h,(w-h)/2:(w+h)/2]
 	return img
 
 def forward_img_to_net(img,net):
@@ -19,6 +42,9 @@ def forward_img_to_net(img,net):
 			img = img2.reshape(28,28,-1)
 	else:
 		img = img.reshape(28,28,-1)
+
+	#cv2.imshow('my webcam', img)
+	# cv2.waitKey(1) 
 
 	res = net.forward(data = np.asarray([img.transpose(2,0,1)]))
 	argmax = res.values()[0]
@@ -32,7 +58,7 @@ if len(sys.argv) <2:
 
 solver_prototxt = 'lenet_solver.prototxt'
 predict_prototxt = 'lenet.prototxt'
-caffemodel = '_iter_5000.caffemodel'
+caffemodel = '_iter_10000.caffemodel'
 label_tab = ['Cross', 'Diamond', 'Disc', 'Square', 'Triangle', 'Octogon']
 
 if sys.argv[1] == 'train':
@@ -72,7 +98,7 @@ elif sys.argv[1] == 'camera':
 	print "successfully loaded classifier"
 	cam = cv2.VideoCapture(0)
 	while True:
-		img = get_cam_image(cam)
+		img = get_cam_image(cam,True)
 		cv2.imshow('my webcam', img)
 		if cv2.waitKey(1) == 27: 
 			break  # esc to quit

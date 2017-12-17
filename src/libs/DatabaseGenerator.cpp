@@ -97,14 +97,15 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 
 				Mat noise_img;
 				stringstream convert;
-				for(int i = 1; i <= 6; i=i+2)
-				{
-					noise_img = bri_img.clone();
-					add_salt_pepper_Noise(noise_img, 0.05*i,0.05*i);
-					convert << i;
-					write_image(noise_img, filename3 + "_snp"+ convert.str() + ext);
-					convert.str("");
-				}
+				
+				// for(int i = 1; i <= 6; i=i+2)
+				// {
+				// 	noise_img = bri_img.clone();
+				// 	add_salt_pepper_Noise(noise_img, 0.05*i,0.05*i);
+				// 	convert << i;
+				// 	write_image(noise_img, filename3 + "_snp"+ convert.str() + ext);
+				// 	convert.str("");
+				// }
 				
 				for(int i = 1; i <= 8; i=i+2)
 				{

@@ -52,7 +52,7 @@ void DatabaseGenerator::generateDatabase()
 						  cout <<"directory created at :"<< canonical(databaseDir) <<endl;
 						}
 						cout << databaseDir << endl;
-						modify_image(origin_image, databaseDir,p.stem().string(), 80, 20);//
+						modify_image(origin_image, databaseDir,p.stem().string(), 60, 20);//
 
 					}
 				}
@@ -87,7 +87,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 			string filename2 = filename + "_con" + con_str;
 
 
-			for (int brightness_value = 1; brightness_value <= 10; brightness_value+=3)
+			for (int brightness_value = 1; brightness_value <= 3; brightness_value+=1)
 			{
 				Mat bri_img = brightness(con_img, brightness_value);
 				string bri_str = lexical_cast<string>(brightness_value);
@@ -151,7 +151,7 @@ Mat DatabaseGenerator::brightness(Mat image, double beta) //plz beta between 1 a
     		{
     			for( int c = 0; c < 3; c++ )
     			{
-    				new_image.at<Vec3b>(y,x)[c] = saturate_cast<uchar>(( image.at<Vec3b>(y,x)[c] + beta));
+    				new_image.at<Vec3b>(y,x)[c] = saturate_cast<uchar>(( image.at<Vec3b>(y,x)[c] / beta));
     			}
  		   	}
 		}

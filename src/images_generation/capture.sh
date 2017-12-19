@@ -58,7 +58,7 @@ snap()
 			convert $ROOT/images/Triangle/Triangle$LADATE -resize 96x54 $ROOT/images/Triangle/Triangle$LADATE
 			echo "\033[1Asnap triangle$LADATE";;
 		o )	python $BASEFOLDER/sale.py $ROOT/images/Octogon/Octogon$LADATE
-			convert $ROOT/images/Octogon/Octogon$LADATE -resize 28x28 $ROOT/images/Octogon/Octogon$LADATE
+			convert $ROOT/images/Octogon/Octogon$LADATE -resize 96x54 $ROOT/images/Octogon/Octogon$LADATE
 			echo "\033[1Asnap octogon$LADATE";;
 		b )	python $BASEFOLDER/sale.py $ROOT/images/Background/Background$LADATE
 			convert $ROOT/images/Background/Background$LADATE -resize 96x54 $ROOT/images/Background/Background$LADATE

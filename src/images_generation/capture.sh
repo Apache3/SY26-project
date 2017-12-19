@@ -40,30 +40,31 @@ instructions()
 
 snap()
 {
-	LADATE=$(date +_%m%d%H%M%S)
+	LADATE=$(date +_%m%d%H%M%S).png
 	case $1 in
-		c ) 	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Cross/cross$LADATE
-			convert $ROOT/images/Cross/cross$LADATE -resize 96x54 $ROOT/images/Cross/cross$LADATE
+		c ) python $BASEFOLDER/sale.py $ROOT/images/Cross/Cross$LADATE
+			convert $ROOT/images/Cross/Cross$LADATE -resize 96x54 $ROOT/images/Cross/Cross$LADATE
 			echo "\033[1Asnap cross$LADATE";;
-		l )	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Diamond/diamond$LADATE
-			convert $ROOT/images/Diamond/diamond$LADATE -resize 96x54 $ROOT/images/Diamond/diamond$LADATE
+		l )	python $BASEFOLDER/sale.py $ROOT/images/Diamond/Diamond$LADATE
+			convert $ROOT/images/Diamond/Diamond$LADATE -resize 96x54 $ROOT/images/Diamond/Diamond$LADATE
 			echo "\033[1Asnap diamond$LADATE";;
-		d )	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Disc/disc$LADATE
-			convert $ROOT/images/Disc/disc$LADATE -resize 96x54 $ROOT/images/Disc/disc$LADATE
+		d )	python $BASEFOLDER/sale.py $ROOT/images/Disc/Disc$LADATE
+			convert $ROOT/images/Disc/Disc$LADATE -resize 96x54 $ROOT/images/Disc/Disc$LADATE
 			echo "\033[1Asnap disc$LADATE";;
-		s )	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Square/square$LADATE
-			convert $ROOT/images/Square/square$LADATE -resize 96x54 $ROOT/images/Square/square$LADATE
+		s )	python $BASEFOLDER/sale.py $ROOT/images/Square/Square$LADATE
+			convert $ROOT/images/Square/Square$LADATE -resize 96x54 $ROOT/images/Square/Square$LADATE
 			echo "\033[1Asnap square$LADATE";;
-		t )	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Triangle/triangle$LADATE
-			convert $ROOT/images/Triangle/triangle$LADATE -resize 96x54 $ROOT/images/Triangle/triangle$LADATE
+		t )	python $BASEFOLDER/sale.py $ROOT/images/Triangle/Triangle$LADATE
+			convert $ROOT/images/Triangle/Triangle$LADATE -resize 96x54 $ROOT/images/Triangle/Triangle$LADATE
 			echo "\033[1Asnap triangle$LADATE";;
-		o )	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Octogon/octogon$LADATE
-			convert $ROOT/images/Octogon/octogon$LADATE -resize 28x28 $ROOT/images/Octogon/octogon$LADATE
+		o )	python $BASEFOLDER/sale.py $ROOT/images/Octogon/Octogon$LADATE
+			convert $ROOT/images/Octogon/Octogon$LADATE -resize 28x28 $ROOT/images/Octogon/Octogon$LADATE
 			echo "\033[1Asnap octogon$LADATE";;
-		b )	raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Background/background$LADATE
-			convert $ROOT/images/Background/background$LADATE -resize 96x54 $ROOT/images/Background/background$LADATE
+		b )	python $BASEFOLDER/sale.py $ROOT/images/Background/Background$LADATE
+			convert $ROOT/images/Background/Background$LADATE -resize 96x54 $ROOT/images/Background/Background$LADATE
 			echo "\033[1Asnap background$LADATE";;
 	esac
+	#raspistill -t 900 -e png -h 1080 -w 1920 -ex auto -awb auto -o $ROOT/images/Background/background$LADATE
 }
 
 addBaseImages()

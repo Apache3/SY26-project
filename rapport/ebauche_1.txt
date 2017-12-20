@@ -1,0 +1,21 @@
+Proposition de plan :
+
+
+Choix du framework :
+	- Solution tout faire en C++ avec openCV
+	- Ou trouver un framework adapté : Caffe
+
+Prise en main de Caffe :
+	- Présentation du framework
+	- Réalisation des exemples (MNIST)
+
+Adaptation du framework :
+	- Création de nos propres databases compatibles
+	- 
+
+
+Conclusion
+	- Comment améliorer le projet
+	- La technologie du machine learning
+	- Ce que le projet nous a apporté
+

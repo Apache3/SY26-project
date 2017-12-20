@@ -1,4 +1,4 @@
-Proposition de plan :
+﻿Proposition de plan :
 
 Intro :
 	- BlaBla
@@ -29,3 +29,4 @@ Conclusion
 
 Sources
 http://theses.ubn.ru.nl/bitstream/handle/123456789/1880/Manders%2C%20J._Bachelor_Thesis_2016.pdf?sequence=1
+https://machinelearningmastery.com/improve-deep-learning-performance/

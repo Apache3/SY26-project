@@ -52,7 +52,7 @@ void DatabaseGenerator::generateDatabase()
 						  cout <<"directory created at :"<< canonical(databaseDir) <<endl;
 						}
 						cout << databaseDir << endl;
-						modify_image(origin_image, databaseDir,p.stem().string(), 1, 20);//
+						modify_image(origin_image, databaseDir,p.stem().string(), 40, 20);//
 
 					}
 				}

@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt]{article}
+\author{Baptiste Bainier et Thomas Jeantet}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{pdflscape}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+
+
+
+%Package
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{placeins}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{ulem} %barrer du texte
+\usepackage{cancel}% barrer dans une expression math (\cancel{})
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+%\usepackage{gensymb}
+\usepackage{caption}
+\usepackage{eurosym}% pour le symbole €
+
+
+
+\usetikzlibrary{shapes.geometric, arrows}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+%Configuration
+\renewcommand*\contentsname{Sommaire}
+\graphicspath{ {images/} }
+%\renewcommand{\thesection}{\Roman{section}}
+%\renewcommand{\thesubsection}{\Alph{subsection}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\renewcommand{\lstlistingname}{Script}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Baptiste Bainier et Thomas Jeantet}
+\lhead{SY26 - Détection de formes par réseau de neurones}
+\rfoot{Page \thepag}
+
+\title{Projet SY26\\Détection de formes par réseau de neurones}
+%\graphicspath{}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+\section*{Introduction}
+  - BlaBla
+
+\section{Choix du framework}
+  - Solution tout faire en C++ avec openCV
+  - Ou trouver un framework adapté : Caffe
+
+\section{Prise en main de Caffe}
+  - Présentation du framework
+  - Réalisation des exemples (MNIST)
+
+\section{Adaptation du framework}
+  - Création des images de train (data augmentation)
+  - Création de nos propres databases compatibles (format lmdb)
+  - Adaptation du net : taille des images, format...
+
+\section{Evaluation des performances}
+  - influence du format des images
+  - influence des images de train (database sale ou pas)
+  - influence apprentissage : taille de batch, itérations...
+
+\section*{Conclusion}
+  - Comment améliorer le projet
+  - La technologie du machine learning
+  - Ce que le projet nous a apporté
+
+\end{document}

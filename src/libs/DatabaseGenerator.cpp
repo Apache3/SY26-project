@@ -107,7 +107,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 				// 	convert.str("");
 				// }
 				
-				for(int i = 1; i <= 4; i=i+1)
+				for(int i = 1; i <= 2; i=i+1)
 				{
 					noise_img = bri_img.clone();
 					add_gaussian_Noise(noise_img, 0,10*i);

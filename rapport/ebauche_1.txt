@@ -1,5 +1,7 @@
 Proposition de plan :
 
+Intro :
+	- BlaBla
 
 Choix du framework :
 	- Solution tout faire en C++ avec openCV
@@ -10,9 +12,14 @@ Prise en main de Caffe :
 	- Réalisation des exemples (MNIST)
 
 Adaptation du framework :
-	- Création de nos propres databases compatibles
-	- 
+	- Création des images de train (data augmentation)
+	- Création de nos propres databases compatibles (format lmdb)
+	- Adaptation du net : taille des images, format...
 
+Evaluation des performances :
+	- influence du format des images
+	- influence des images de train (database sale ou pas)
+	- influence apprentissage : taille de batch, itérations...
 
 Conclusion
 	- Comment améliorer le projet

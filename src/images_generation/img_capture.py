@@ -63,7 +63,7 @@ def save_shape(img, images_path, nbr, img_name,img_counter):
 	cv2.waitKey(1)
 	return img_counter
 
-images_path='./'
+images_path='../../images/'
 
 #cam = cv2.VideoCapture(0)
 cam, rawCapture = pi_cam_init()

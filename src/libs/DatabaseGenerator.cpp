@@ -52,7 +52,7 @@ void DatabaseGenerator::generateDatabase()
 						  cout <<"directory created at :"<< canonical(databaseDir) <<endl;
 						}
 						cout << databaseDir << endl;
-						modify_image(origin_image, databaseDir,p.stem().string(), 40, 20);//
+						modify_image(origin_image, databaseDir,p.stem().string(), 1, 20);//
 
 					}
 				}
@@ -80,7 +80,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 		//write_image(rot_img, filename + ext);
 		
 
-		for (int contrast_value = 1; contrast_value <= 2; contrast_value+=1)
+		for (int contrast_value = 1; contrast_value <= 1; contrast_value+=1)
 		{
 			Mat con_img = contrast(rot_img, contrast_value);
 			string con_str = lexical_cast<string>(contrast_value);
@@ -107,7 +107,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 				// 	convert.str("");
 				// }
 				
-				for(int i = 1; i <= 8; i=i+2)
+				for(int i = 1; i <= 4; i=i+1)
 				{
 					noise_img = bri_img.clone();
 					add_gaussian_Noise(noise_img, 0,10*i);

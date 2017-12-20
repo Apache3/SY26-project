@@ -69,7 +69,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 {
 	string ext = ".png";
 	
-	for (int angle = 0; angle <= max_angle; angle+=angle_step )
+	for (int angle = 100; angle <= max_angle; angle+=angle_step )
 	{
 		Mat rot_img = rotate(img,angle);
 		string angl_str = lexical_cast<string>(angle);
@@ -80,14 +80,14 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 		//write_image(rot_img, filename + ext);
 		
 
-		for (int contrast_value = 1; contrast_value <= 3; contrast_value+=1)
+		for (int contrast_value = 1; contrast_value <= 2; contrast_value+=1)
 		{
 			Mat con_img = contrast(rot_img, contrast_value);
 			string con_str = lexical_cast<string>(contrast_value);
 			string filename2 = filename + "_con" + con_str;
 
 
-			for (int brightness_value = 1; brightness_value <= 3; brightness_value+=1)
+			for (int brightness_value = 1; brightness_value <= 2; brightness_value+=1)
 			{
 				Mat bri_img = brightness(con_img, brightness_value);
 				string bri_str = lexical_cast<string>(brightness_value);

@@ -52,7 +52,7 @@ void DatabaseGenerator::generateDatabase()
 						  cout <<"directory created at :"<< canonical(databaseDir) <<endl;
 						}
 						cout << databaseDir << endl;
-						modify_image(origin_image, databaseDir,p.stem().string(), 60, 20);//
+						modify_image(origin_image, databaseDir,p.stem().string(), 1, 20);//
 
 					}
 				}
@@ -69,7 +69,7 @@ void DatabaseGenerator::modify_image(cv::Mat& img, path p, string fn, int max_an
 {
 	string ext = ".png";
 	
-	for (int angle = 100; angle <= max_angle; angle+=angle_step )
+	for (int angle = 0; angle <= max_angle; angle+=angle_step )
 	{
 		Mat rot_img = rotate(img,angle);
 		string angl_str = lexical_cast<string>(angle);

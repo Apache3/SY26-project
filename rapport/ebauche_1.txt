@@ -5,6 +5,9 @@ Intro :
 
 Choix du framework :
 	- Solution tout faire en C++ avec openCV
+		- librairies ML
+		- Avantages
+		- Inconvénients
 	- Ou trouver un framework adapté : Caffe
 
 Prise en main de Caffe :
@@ -31,3 +34,7 @@ Sources
 http://theses.ubn.ru.nl/bitstream/handle/123456789/1880/Manders%2C%20J._Bachelor_Thesis_2016.pdf?sequence=1
 https://machinelearningmastery.com/improve-deep-learning-performance/
 https://stackoverflow.com/questions/30033096/what-is-lr-policy-in-caffe
+https://docs.opencv.org/2.4/modules/ml/doc/ml.html
+https://docs.opencv.org/3.0.0/dc/dd6/ml_intro.html
+http://caffe.berkeleyvision.org/
+

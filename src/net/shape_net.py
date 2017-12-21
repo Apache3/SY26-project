@@ -46,15 +46,16 @@ def get_cam_image(cam, mirror=False):
 
 def forward_img_to_net(img,net):
 	if img.shape != [96,54,3]:
-			img = cv2.resize(img,(96,54))
-			 #img = img2.reshape(96,54,-1)
-	#else:
-		#img = img.reshape(96,54,-1)
+			img2 = cv2.resize(img,(96,54))
+			img = img2.reshape(96,54,-1)
+	else:
+		img = img.reshape(96,54,-1)
 
-	cv2.imshow('my webcam', img)
-	cv2.waitKey(1) 
+	#cv2.imshow('my webcam', img)
+	# cv2.waitKey(1) 
 
-	res = net.forward(data = np.asarray([img.transpose(2,0,1)]))
+	#res = net.forward(data = np.asarray([img.transpose(2,0,1)]))
+	res = net.predict(inputs=np.asarray([img.transpose(2,0,1)]))
 	argmax = res.values()[0]
 	pred = res.values()[1]
 	print label_tab[pred.argmax()]

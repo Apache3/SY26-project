@@ -44,11 +44,11 @@ def get_cam_image(cam, mirror=False):
 	return img
 
 def forward_img_to_net(img,net):
-	if img.shape != [28,28,3]:
-			img2 = cv2.resize(img,(28,28))
-			img = img2.reshape(28,28,-1)
+	if img.shape != [96,54,3]:
+			img2 = cv2.resize(img,(96,54))
+			img = img2.reshape(96,54,-1)
 	else:
-		img = img.reshape(28,28,-1)
+		img = img.reshape(96,54,-1)
 
 	#cv2.imshow('my webcam', img)
 	# cv2.waitKey(1) 
@@ -136,7 +136,7 @@ elif sys.argv[1] == 'predict' and len(sys.argv)>2:
 elif sys.argv[1] == 'camera':
 	
 	caffe.set_mode_cpu()
-	net = caffe.Classifier(predict_prototxt, caffemodel,caffe.TEST,raw_scale=255)
+	net = caffe.Classifier(predict_prototxt, caffemodel,caffe.TEST,raw_scale=1)
 	print "successfully loaded classifier"
 	#cam = cv2.VideoCapture(0)
 	cam, rawCapture = pi_cam_init()
@@ -153,14 +153,14 @@ elif sys.argv[1] == 'create_train_db':
 	
 	lmdb_file = 'shape_train_lmdb/'
 	batch_size = 48
-	database_path = '../../database/'
+	database_path = '../../database/train/'
 	write_database(lmdb_file,batch_size,database_path)
 
 
 elif sys.argv[1] == 'create_test_db':
 	lmdb_file = 'shape_test_lmdb/'
-	batch_size = 48
-	database_path = '../../database/'
+	batch_size = 24
+	database_path = '../../database/test/'
 	write_database(lmdb_file,batch_size,database_path)
 
 else:

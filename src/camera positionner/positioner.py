@@ -26,26 +26,28 @@ def get_pi_cam_image(camera, rawCapture):
 	return image
 
 cam, rawCapture = pi_cam_init()
-# while True:
+while True:
 	
-# 	img = get_pi_cam_image(cam, rawCapture)
-# 	cv2.imshow('my webcam', img)
-# 	if cv2.waitKey(1) == 27: 
-# 		break  # esc to quit
+	img = get_pi_cam_image(cam, rawCapture)
+	h,w,c = img.shape
+	img = cv2.resize(img,(94,56))
+	cv2.imshow('my webcam', img)
+	if cv2.waitKey(1) == 27: 
+		break  # esc to quit
 
 
-for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-		#grab the raw NumPy array representing the image - this array
-		#will be 3D, representing the width, height and # of channels
-		image = frame.array
+# for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+# 		#grab the raw NumPy array representing the image - this array
+# 		#will be 3D, representing the width, height and # of channels
+# 		image = frame.array
 
-		image = cv2.resize(image,(94,56))
-		cv2.imshow("Frame", image)
-		key = cv2.waitKey(1) & 0xFF
+# 		image = cv2.resize(image,(94,56))
+# 		cv2.imshow("Frame", image)
+# 		key = cv2.waitKey(1) & 0xFF
 
-		# clear the stream in preparation or the next frame
-		rawCapture.truncate(0)
+# 		# clear the stream in preparation or the next frame
+# 		rawCapture.truncate(0)
 
-		# Quit if "q" is hit
-		if key == ord("q"):
-			break
+# 		# Quit if "q" is hit
+# 		if key == ord("q"):
+# 			break

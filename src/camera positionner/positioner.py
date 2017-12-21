@@ -40,7 +40,7 @@ for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=Tru
 		image = frame.array
 		cv2.imshow("Frame", image)
 		key = cv2.waitKey(1) & 0xFF
-		image = cv2.resize(image,(IMG_SIZE_WIDHT,IMG_SIZE_HEIGHT))
+		image = cv2.resize(image,(94,56))
 		test_img(image)
 
 		# clear the stream in preparation or the next frame

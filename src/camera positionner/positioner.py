@@ -39,7 +39,7 @@ for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=Tru
 		#will be 3D, representing the width, height and # of channels
 		image = frame.array
 		print(image.shape)
-		image = cv2.resize(image,(94,56))
+		image = cv2.resize(image,(56,94))
 		cv2.imshow("Frame", image)
 		key = cv2.waitKey(1) & 0xFF
 

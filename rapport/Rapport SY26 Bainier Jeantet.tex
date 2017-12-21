@@ -114,7 +114,7 @@
       \item La flexibilité du réseau
     \end{itemize}
 
-    Le réseau est plus rapide à mettre en place, car il existe déjà de nombreuses "briques" programmées, ce qui nous permet d'avoir à seulement les adapter à notre cas. On dispose également d'un réseau plus flexible, car tous les éléments sont prévus pour que les paramètre puissent être changés facilement, ce qui nous évite de refaire tout le code pour un moindre changement dans le premier scénario.
+    Le réseau est plus rapide à mettre en place, car il existe déjà de nombreuses ``brique'' programmées, ce qui nous permet d'avoir à seulement les adapter à notre cas. On dispose également d'un réseau plus flexible, car tous les éléments sont prévus pour que les paramètre puissent être changés facilement, ce qui nous évite de refaire tout le code pour un moindre changement dans le premier scénario.
 
     Nous avons donc choisi d'utiliser un framework, ce qui nous économise du temps de développement et nous permet de concentrer nos efforts sur l'optimisation du réseau de neurones plutôt que sur le développement de ce dernier. Nous avons choisi d'utiliser Caffe, car il semblait parfaitement adapté à notre projet (réseau de neurones pour la détection d'images), et de plus il est en grande partie rédigé en C++, qui est le langage que nous connaissons le mieux.
 
@@ -124,12 +124,12 @@
   
   \subsection{Du Caffe ?}
     \textit{"Caffe is a deep learning framework made with expression, speed, and modularity in mind."}
-    Caffe est un framework qui permet de créer des réseaux de neurones sur-mesure, selon les besoins de l'utilisateur. Plusieurs "couches" sont déjà implémentées, il suffit ensuite de choisir quelles couches utiliser, et quels paramètres leur appliquer. Cette étape de design du modèle se fait facilement au travers d'un simple fichier type protobuf, contenant l'ordre et les paramètres de chaque couche. De nombreux modèles différents existent déjà, et sont mis à disposition par Caffe au travers de leur "zoo".
+    Caffe est un framework qui permet de créer des réseaux de neurones sur-mesure, selon les besoins de l'utilisateur. Plusieurs ``couches'' sont déjà implémentées, il suffit ensuite de choisir quelles couches utiliser, et quels paramètres leur appliquer. Cette étape de design du modèle se fait facilement au travers d'un simple fichier type protobuf, contenant l'ordre et les paramètres de chaque couche. De nombreux modèles différents existent déjà, et sont mis à disposition par Caffe au travers de leur ``zoo''.
 
-    L'utilisateur peut alors choisir d'utiliser une base de données existante, ou de créer sa propre database. De nombreux exemples sont déjà implémentés dans Caffe, ce qui nous permet de découvrir le fonctionnement du framework, mais aussi de nous inspirer de ces exemples pour créer notre réseau. Dans un premier temps, nous avons découvert le framework grâce à l'exemple du modèle LeNet, utilisé pour différencier les chiffres de la la base de données MNIST.
+    L'utilisateur peut alors choisir d'utiliser une base de données existante, ou de créer sa propre database. De nombreux exemples sont déjà implémentés dans Caffe, ce qui nous permet de découvrir le fonctionnement du framework, mais aussi de nous inspirer de ces exemples pour créer notre réseau. Dans un premier temps, nous avons découvert le framework grâce à l'exemple du modèle LeNet 5, utilisé pour différencier les chiffres de la la base de données MNIST.
   
   \subsection{L'exemple MNIST}
-    Caffe fournit un exemple très complet basé sur la classification de la base de données MNIST à l'aide du modèle LeNet. Nous nous sommes basés sur cet exemple pour comprendre le fonctionnement du framework. L'exemple MNIST nous montre donc comment définir un modèle grâce au fichier protobuf, et la lecture du code nous a permis de comprendre la prise en charge des bases de données par Caffe.
+    Caffe fournit un exemple très complet basé sur la classification de la base de données MNIST à l'aide du modèle LeNet 5. Nous nous sommes basés sur cet exemple pour comprendre le fonctionnement du framework. L'exemple MNIST nous montre donc comment définir un modèle grâce au fichier protobuf, et la lecture du code nous a permis de comprendre la prise en charge des bases de données par Caffe.
     L'exécution de cet exemple nous a également permis de vérifier la compilation et la bonne exécution de Caffe sur nos machines. C'est en se basant sur cet exemple que nous avons développé notre propre solution au problème de SY26.
 
 \newpage
@@ -139,25 +139,25 @@
   De plus, il nous aurait fallu énormément de temps pour développer notre propre modèle, notamment à cause des temps d'apprentissages très longs sur nos machines, qui restreignent considérablement le nombre de modèles possibles à tester. Nous avons donc pensé qu'il était judicieux de se baser sur LeNet.
   
   \subsection{Data augmentation}
-    La première différence entre l'exemple de la classification MNIST et notre classification est simplement la donnée d'entrée. Nous avons besoin de créer nos propres données d'apprentissage pour entrainer notre modèle. Pour créer une base de données suffisamment grande, nous avons décidé de faire de la "data augmentation". Nous avons pris plusieurs photos des images à identifier, que nous avons ensuite déformées de plusieurs manières afin de créer des données similaires mais différentes à apprendre à notre réseau.
+    La première différence entre l'exemple de la classification MNIST et notre classification est simplement la donnée d'entrée. Nous avons besoin de créer nos propres données d'apprentissage pour entrainer notre modèle. Pour créer une base de données suffisamment grande, nous avons décidé de faire de la ``data augmentation''. Nous avons pris plusieurs photos des images à identifier, que nous avons ensuite déformées de plusieurs manières afin de créer des données similaires mais différentes à apprendre à notre réseau.
 
     Nous avons essayé diverses transformations sur nos images d'origine :
     \begin{itemize}
       \item La rotation
       \item Le bruit gaussien
-      \item Le bruit "SNP" (Salt an Pepper)
+      \item Le bruit ``SNP'' (Salt an Pepper)
       \item La modification du contraste
-      \item La modofcation de la luminosité
+      \item La modification de la luminosité
     \end{itemize}
 
-    Ces transformations nous permettent donc de créer facilement quelques milliers d'images d'apprentissage à partir de quelques dizaines de photos. Nous avons essayé de prendre des photos dans différents lieux, et à différents moments de la journée, pour essayer d'avoir des données reflétant toutes les expositions de photos possibles.
+    Ces transformations nous permettent donc de créer facilement plusieurs centaines d'images d'apprentissage à partir de quelques dizaines de photos. Nous avons essayé de prendre des photos dans différents lieux, et à différents moments de la journée, pour essayer d'avoir des données reflétant toutes les expositions de photos possibles.
 
     Nous avons testé beaucoup de valeurs différentes pour ces transformations, que nous avons changées en fonction de la réponse du réseau. Nous avons constaté qu'il n'est pas nécessaire de trop bruiter les images de la base de donnée, introduisant de la perte si le réseau ne peut pas reconnaitre la forme en entrée. Nous avons décidé de ne pas appliquer de rotation, le réseau LeNet n'étant à priori pas sensible à la rotation. De plus cette transformation implique l'ajout d'un bord noir sur chaque image.
     Nous avons décidé de ne pas utiliser le bruit SNP, ayant beaucoup trop d'influence sur les couleurs de l'image lorsque celles-ci sont trop petites. Le bruit gaussien a été gardé, mais à une amplitude limitée. Il reflète plus ou moins les différences de netteté sur l'image perçue par la raspicam (qui change selon l'exposition).
     Les modifications de contraste et de luminosité sont conservées, mais encore une fois à une amplitude limitée, car ces modifications sont susceptibles de générer des images inutilisables (trop noires ou trop blanches) si la luminosité d'origine est trop extrême. 
 
   \subsection{Création de database(s)}
-    Une fois les images d'apprentissage générées, il faut générer les fichiers de bases de données. Deux fichiers sont créés : La database d'apprentissage,contenant toutes les images ainsi que les labels qui y sont associés, et la database de test, contenant d'autres photos (non augmentées). Ces fichiers sont écrits dans un format particulier, le format "LMDB". Nous avons récupéré et modifié un script Python qui permet de générer des bases de données lmdb à partir de nos images et de nos labels.
+    Une fois les images d'apprentissage générées, il faut générer les fichiers de bases de données. Deux fichiers sont créés : La database d'apprentissage,contenant toutes les images ainsi que les labels qui y sont associés, et la database de test, contenant d'autres photos (non augmentées). Ces fichiers sont écrits dans un format particulier, le format ``LMDB''. Nous avons choisi ce format car nous n'étions pas sûrs du nombre d'images que nous allions utiliser. Ce format permet de stocker et classifier un grand nombre d'images sans perdre de temps à les chercher dans un arbre de fichiers. Nous avons récupéré et modifié un script Python qui permet de générer des bases de données lmdb à partir de nos images et de nos labels.
   
   \subsection{Personnalisation du net}
     Une fois la database créée, il faut adapter le modèle LeNet pour mieux correspondre à notre projet. Plus exactement, il faut modifier les hyperparamètres du modèle, car les couches que nous utilisons restent les même que celles de LeNet (Conv, Pool, Conv, Pool, Fully Connected MLP). La prochaine partie explicite les modifications que nous avons appliquées à ces hyperparamètres.
@@ -173,9 +173,6 @@
     Il devrait être plus simple pour le réseau de repérer les différences entre chaque image.
     Ensuite il nous faut décider de la taille de chaque image. Une grande image impose beaucoup de calculs, il faut donc choisir une taille qui permette de distinguer les formes, quelle que soit leur taille. Nous avons choisi un format rectangulaire, de 96 par 54 pixel. Cette taille est un multiple de la résolution maximale de la caméra, 1920 par 1080, ce qui permet moins de pertes de qualité lors d'un changement de taille. Elle est également suffisamment grande pour discerner des petites formes.
     
-  \subsection{Influence des images de la database}
-
-  
   \subsection{Influence des hyperParamètres}
     L'apprentissage est une étape cruciale, possédant beaucoup de paramètres, dont nous allons voir l'influence.
     \subsubsection{Le learning rate et son évolution}
@@ -187,8 +184,12 @@
       Un batch est le nombre d'image que l'on va fournir à notre réseau avant de changer les poids. Plus il y a d'images dans un batch, plus la descente de gradient sera précise, mais plus l'apprentissage est lent. De plus, si la taille de batch n'est pas un multiple du nombre d'images dans la base de donnée, on risque de favoriser l'apprentissage d'une classe au détriment d'une autre. 
 
       Selon le nombre d'images issus de la data augmentation, nous choisissons les batch size aux alentours de 60. Avecc cet ordre de grandeur, nous avons une vitesse d'apprentissage acceptable tout en convergeant.
-    \subsubsection{Nombre de filtres}
-      
+    \subsubsection{Paramètres de couches}
+      Les derniers facteurs influant sur la convergence et les performances sont le nombre de filtres appris par certaines couches, ainsi que la taille des kernels de convolution. 
+
+      Nous avons commencé nos apprentissages avec les valeurs initiales de LeNet, mais nous nous sommes rendus compte que le réseau peinait à classifier les images. Nous avons donc augmenté le nombre de filtres appris par les deux couches de convolution pour extraire davantage de features, aisi que la taille des kernels de convolutions pour plus de neurones. 
+
+      Encore une fois, il n'existe pas de méthode absolue pour déterminer ces paramètres, il faut arriver à trouver un compromis.
 
 \newpage
 \section*{Conclusion}

@@ -11,7 +11,7 @@ import time
 
 def pi_cam_init():
 	camera = PiCamera()
-	#camera.framerate=30
+	camera.framerate=30
 	rawCapture = PiRGBArray(camera)
 	 
 	# allow the camera to warmup
@@ -38,8 +38,8 @@ for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=Tru
 		#grab the raw NumPy array representing the image - this array
 		#will be 3D, representing the width, height and # of channels
 		image = frame.array
-		print(image.shape)
-		image = cv2.resize(image,(56,94))
+
+		image = cv2.resize(image,(94,56))
 		cv2.imshow("Frame", image)
 		key = cv2.waitKey(1) & 0xFF
 

@@ -142,20 +142,39 @@
 
 \newpage
 \section{Evaluation des performances}
-  
-  \subsection{Influence du format des images}
-  
+  Plusieurs paramètres influencent les performances d'un réseau, en plus de ses différentes couches. Nous allons détailler ici les paramètres que nous avons pu modifier au cours de ce projet, et leurs influences.
+  \subsection{Le format des images}
+    La formes des images que nous allions utiliser fut le premier paramètre que nous avons déterminé. 
+    
+    Tout d'abord, il faut choisir entre l'utilisation d'images couleur ou d'images en nuances de gris. Cependant, plus le nombre de canaux est grand, plus le temps d'apprentissage sera long. Nous avons tout de même choisi d'utiliser des images couleur, car chaque forme est associée à une couleur. 
+
+    Il devrait être plus simple pour le réseau de repérer les différences entre chaque image.
+    Ensuite il nous faut décider de la taille de chaque image. Une grande image impose beaucoup de calculs, il faut donc choisir une taille qui permette de distinguer les formes, quelle que soit leur taille. Nous avons choisi un format rectangulaire, de 96 par 54 pixel. Cette taille est un multiple de la résolution maximale de la caméra, 1920 par 1080, ce qui permet moins de pertes de qualité lors d'un changement de taille. Elle est également suffisamment grande pour discerner des petites formes.
+    
   \subsection{Influence des images de la database}
+
   
   \subsection{Influence des hyperParamètres}
+    L'apprentissage est une étape cruciale, possédant beaucoup de paramètres, dont nous allons voir l'influence.
+    \subsubsection{Le learning rate et son évolution}
+      Le learning rate est le paramètre le plus important lors de l'apprentissage; delui dépend la convergence ou non d'un réseau. Caffe nous permet de de faire varier ce learning rate en fonction du nombre d'itérations.
+
+      Il n'y a pas de méthode particulière pour déterminer les bons paramètres, il faut lancer des apprentissages et observer la réponse du réseau. A force de tatônnements, nous sommes parvenus à une courbe de learning rate produisant une convergence assez rapide en phase de validation (environ 400 iterations), et permettant un loss bas, et une accuracy proche de 1.
+
+    \subsubsection{Taille de batch}
+      Un batch est le nombre d'image que l'on va fournir à notre réseau avant de changer les poids. Plus il y a d'images dans un batch, plus la descente de gradient sera précise, mais plus l'apprentissage est lent. De plus, si la taille de batch n'est pas un multiple du nombre d'images dans la base de donnée, on risque de favoriser l'apprentissage d'une classe au détriment d'une autre. 
+
+      Selon le nombre d'images issus de la data augmentation, nous choisissons les batch size aux alentours de 60. Avecc cet ordre de grandeur, nous avons une vitesse d'apprentissage acceptable tout en convergeant.
+    \subsubsection{Nombre de filtres}
+      
 
 \newpage
 \section*{Conclusion}
   
-  \subsection{Améliorer notre réseau}
+  \subsection*{Améliorer notre réseau}
   
-  \subsection{Le Machine Learning}
+  \subsection*{Le Machine Learning}
   
-  \subsection{Ce que le projet nous a apporté}
+  \subsection*{Ce que le projet nous a apporté}
 
 \end{document}

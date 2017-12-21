@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 import sys
 from os import walk
 
-# from picamera.array import PiRGBArray
-# from picamera import PiCamera
+from picamera.array import PiRGBArray
+from picamera import PiCamera
 
 import time
  
@@ -54,8 +54,8 @@ def forward_img_to_net(img,net):
 	#cv2.imshow('my webcam', img)
 	# cv2.waitKey(1) 
 
-	#res = net.forward(data = np.asarray([img.transpose(2,0,1)]))
-	res = net.predict(inputs=np.asarray([img.transpose(2,0,1)]))
+	res = net.forward(data = np.asarray([img.transpose(2,0,1)]))
+	#res = net.predict(inputs=np.asarray([img.transpose(2,0,1)]))
 	argmax = res.values()[0]
 	pred = res.values()[1]
 	print label_tab[pred.argmax()]
@@ -91,7 +91,8 @@ def write_database(lmdb_file,batch_size,database_path):
 	    # save in datum
 	    datum = caffe.io.array_to_datum(data, label)
 	    
-	    keystr = '{:0>8d}'.format(item_id)
+	    keystr = '{:0>8d}'.forma
+	    t(item_id)
 	    lmdb_txn.put( keystr, datum.SerializeToString() )
 
 	    # write batch

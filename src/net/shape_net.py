@@ -142,14 +142,14 @@ elif sys.argv[1] == 'camera':
 	print "successfully loaded classifier"
 	#cam = cv2.VideoCapture(0)
 	cam, rawCapture = pi_cam_init()
-
+	mean_img = get_pi_cam_image(cam, rawCapture)
 	while True:
 		#img = get_cam_image(cam,True)
 		img = get_pi_cam_image(cam, rawCapture)
 		#cv2.imshow('my webcam', img)
 		#if cv2.waitKey(1) == 27: 
 		#	break  # esc to quit
-		forward_img_to_net(img,net)
+		forward_img_to_net(img-mean_img,net)
 
 elif sys.argv[1] == 'create_train_db':
 	

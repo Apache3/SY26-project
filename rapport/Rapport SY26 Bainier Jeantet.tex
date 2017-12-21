@@ -68,7 +68,7 @@
 \fancyhf{}
 \rhead{Baptiste Bainier et Thomas Jeantet}
 \lhead{SY26 - Détection de formes par réseau de neurones}
-\rfoot{Page \thepag}
+\rfoot{Page \thepage}
 
 \title{Projet SY26\\Détection de formes par réseau de neurones}
 %\graphicspath{}
@@ -80,29 +80,29 @@
 
 
 \section*{Introduction}
-  - BlaBla
+  Le développement de notre réseau de neurones a été implémenté dans le cadre de l'UV SY26. L'objectif est de pouvoir détecter et différencier des formes apparaissant sur un écran. Il y a 6 formes différentes, chacunes de couleur différente. Il faut pouvoir les différencier quelle que soit leur taille et leur position sur l'écran.
+  \\Le réseau doit être implémenté sur Raspberry Pi 3, et les images sont capturées par une Raspicam (v2).
+\section*{Choix du framework}
+  \subsection{Utiliser OpenCV}
+  \subsection{Utiliser un framework}
 
-\section{Choix du framework}
-  - Solution tout faire en C++ avec openCV
-  - Ou trouver un framework adapté : Caffe
+\section*{Prise en main de Caffe}
+  \subsection{Du Caffe ?}
+  \subsection{L'exemple MNIST}
 
-\section{Prise en main de Caffe}
-  - Présentation du framework
-  - Réalisation des exemples (MNIST)
+\section*{Adaptation du framework}
+  \subsection{Data augmentation}
+  \subsection{Création de database(s)}
+  \subsection{Personnalisation du net}
 
-\section{Adaptation du framework}
-  - Création des images de train (data augmentation)
-  - Création de nos propres databases compatibles (format lmdb)
-  - Adaptation du net : taille des images, format...
-
-\section{Evaluation des performances}
-  - influence du format des images
-  - influence des images de train (database sale ou pas)
-  - influence apprentissage : taille de batch, itérations...
+\section*{Evaluation des performances}
+  \subsection{Influence du format des images}
+  \subsection{Influence des images de la database}
+  \subsection{Influence des hyperParamètres}
 
 \section*{Conclusion}
-  - Comment améliorer le projet
-  - La technologie du machine learning
-  - Ce que le projet nous a apporté
+  \subsection{Améliorer notre réseau}
+  \subsection{Le Machine Learning}
+  \subsection{Ce que le projet nous a apporté}
 
 \end{document}

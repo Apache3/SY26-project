@@ -38,9 +38,9 @@ for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=Tru
 		#grab the raw NumPy array representing the image - this array
 		#will be 3D, representing the width, height and # of channels
 		image = frame.array
+		image = cv2.resize(image,(94,56))
 		cv2.imshow("Frame", image)
 		key = cv2.waitKey(1) & 0xFF
-		image = cv2.resize(image,(94,56))
 
 		# clear the stream in preparation or the next frame
 		rawCapture.truncate(0)

@@ -34,7 +34,7 @@ cam, rawCapture = pi_cam_init()
 # 		break  # esc to quit
 
 
-for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+for frame in cam.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 		#grab the raw NumPy array representing the image - this array
 		#will be 3D, representing the width, height and # of channels
 		image = frame.array
